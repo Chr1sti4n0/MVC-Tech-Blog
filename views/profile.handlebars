@@ -1,0 +1,50 @@
+<div class="row">
+    <div class="col-auto">
+        <h2>Tech Blog</h2>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-6">
+        <h3>Create a New Post:</h3>
+
+        <form class="form new-post-form">
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">+ New Post</button>
+                <label for="post-title">Title:</label>
+                <input class="form-input" type="text" id="post-title" name="post-title" />
+                <label for="post-content">Content:</label>
+                <input class="form-input" type="text" id="post-content" name="post-content" />
+            </div>
+            <div id="showNewPost" style="display: none;">
+                {{> new-post}}
+            </div>
+        </form>
+    </div>
+
+    {{#if newPosts.length}}
+    <div class="col-md-6 posts-list">
+        <h3>Blog Posts:</h3>
+
+        {{#each newPosts as |newPost|}}
+        <div class="row mb-2">
+            <div class="col-md-12">
+                <h4>Date: {{format_date date_created}}</h4>
+            </div>
+            <div class="col-md-12">
+                <h4>Title: {{newPost.title}}</h4>
+            </div>
+            <div class="col-md-12">
+                <h4>Content: {{newPost.content}}</h4>
+            </div>
+            <div class="col-md-12">
+                <button class="posts-delete btn btn-sm" id="posts-delete"
+                    data-id="{{newPost.id}}">DELETE</button>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+    {{/if}}
+</div>
+
+<script src="./js/profile.js"></script>
