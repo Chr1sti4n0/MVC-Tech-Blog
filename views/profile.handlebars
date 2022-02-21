@@ -10,14 +10,14 @@
 
         <form class="form new-post-form">
             <div class="form-group">
-                <button type="submit" class="btn btn-primary">+ New Post</button>
                 <label for="post-title">Title:</label>
                 <input class="form-input" type="text" id="post-title" name="post-title" />
                 <label for="post-content">Content:</label>
                 <input class="form-input" type="text" id="post-content" name="post-content" />
+                <button type="submit" class="btn btn-primary">+ Add Post</button>
             </div>
             <div id="showNewPost" style="display: none;">
-                {{> new-post}}
+                {{new-post}}
             </div>
         </form>
     </div>
@@ -38,8 +38,7 @@
                 <h4>Content: {{newPost.content}}</h4>
             </div>
             <div class="col-md-12">
-                <button class="posts-delete btn btn-sm" id="posts-delete"
-                    data-id="{{newPost.id}}">DELETE</button>
+                <button class="posts-delete btn btn-sm" id="posts-delete" data-id="{{newPost.id}}">DELETE</button>
             </div>
         </div>
         {{/each}}
