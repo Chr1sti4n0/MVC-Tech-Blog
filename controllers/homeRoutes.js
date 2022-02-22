@@ -25,29 +25,31 @@ router.get('/', async (req, res) => {
     }
 });
 
-//   router.get('/posts/:id', async (req, res) => {
-//     try {
-//       const postData = await Post.findByPk(req.params.id, {
-//         include: [
-//           {
-//             model: User,
-//             attributes: ['name'],
-//           },
-//         ],
-//       });
-
-//       const post = postData.get({ plain: true });
-
-//       res.render('posts', {
-//         ...dashboard,
-//         logged_in: req.session.logged_in
-//       });
-//     } catch (err) {
-//       res.status(500).json(err);
-//     }
-//   });
+router.get('/profile', withAuth, async (req, res) => {
+    try {
+        const postData = await Post.findAll({ where: { user_id: req.session.user_id } }, {
+            include: [
+                {
+                    model: User,
+                    attributes: ['name'],
+                },
+            ],
+        });
+        const posts = postData.map((post) =>  post.get({ plain: true }));
+        console.log(postData)
+        res.render('profile', {
+            newPosts: posts,
+            logged_in: true
+        });
+    } catch (err) {
+        res.status(500).json(err);
+        console.log(err)
+    }
+});
 
 //withAuth will prevent access
+
+
 router.get('/profile', withAuth, async (req, res) => {
     try {
 
