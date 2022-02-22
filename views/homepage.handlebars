@@ -1,0 +1,30 @@
+<div class="row">
+    <div class="col-auto">
+        <h2>Tech Blog</h2>
+    </div>
+</div>
+
+<div class="row mt-4">
+    {{#if newPosts.length}}
+    <div class="post-list col-md-6 posts-list">
+        <h3>Blog Posts:</h3>
+
+        {{#each newPosts as |newPost|}}
+        
+        <div class="row mb-2">
+            <div class="col-md-12">
+                <h4>Date: {{format_date newPost.date_created}}</h4>
+            </div>
+            <div class="col-md-12">
+                <h4>Title: {{newPost.title}}</h4>
+            </div>
+            <div class="col-md-12">
+                <h4>Content: {{newPost.content}}</h4>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+    {{/if}}
+</div>
+
+<script src="./js/profile.js"></script>
